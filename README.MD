@@ -57,6 +57,13 @@ This application uses the following APIs:
 git clone <your-repository-url>
 cd finance-dashboard
 ```
+## 🎥 Demo Video
+
+*Watch the complete demo:* [Personal Finance Dashboard Demo](https://youtu.be/mCqczNOJd9A?si=QOp2cuX8rfR7WOFT)
+
+This 2-minute video demonstrates the application running locally, Docker deployment process, and load balancer functionality.
+
+```
 
 ### 2. Install Dependencies
 ```bash

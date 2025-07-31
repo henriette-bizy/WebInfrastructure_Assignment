@@ -1,0 +1,24 @@
+Finance Dashboard Load Balancing Evidence
+==========================================
+Date: Fri Aug  1 02:32:28 AM CAT 2025
+
+Request 1: Web02
+Request 2: Web02
+Request 3: Web01
+Request 4: Web02
+Request 5: Web01
+Request 6: Web02
+Request 7: Web01
+Request 8: Web01
+Request 9: Web02
+Request 10: Web01
+Request 11: Web02
+Request 12: Web01
+Request 13: Web02
+Request 14: Web02
+Request 15: Web01
+Request 16: Web01
+Request 17: Web02
+Request 18: Web01
+Request 19: Web02
+Request 20: Web01
