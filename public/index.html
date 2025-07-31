@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Dashboard</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1><i class="fas fa-chart-line"></i> I&Finance</h1>
+                <div class="server-info">
+                    <span id="server-status">Loading...</span>
+                    <button id="refresh-all" class="btn btn-primary">
+                        <i class="fas fa-sync-alt"></i> Refresh All
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard -->
+        <main class="dashboard-main">
+            <!-- Currency Converter Widget -->
+            <section class="widget currency-widget">
+                <div class="widget-header">
+                    <h2><i class="fas fa-exchange-alt"></i> Currency Converter</h2>
+                </div>
+                <div class="widget-content">
+                    <div class="converter-form">
+                        <div class="input-group">
+                            <label for="amount">Amount:</label>
+                            <input type="number" id="amount" min="0" step="0.01" value="100">
+                        </div>
+                        <div class="input-group">
+                            <label for="from-currency">From:</label>
+                            <select id="from-currency">
+                                <option value="USD">USD - US Dollar</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="GBP">GBP - British Pound</option>
+                                <option value="JPY">JPY - Japanese Yen</option>
+                                <option value="CAD">CAD - Canadian Dollar</option>
+                                <option value="AUD">AUD - Australian Dollar</option>
+                                <option value="CHF">CHF - Swiss Franc</option>
+                                <option value="CNY">CNY - Chinese Yuan</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="to-currency">To:</label>
+                            <select id="to-currency">
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="USD">USD - US Dollar</option>
+                                <option value="GBP">GBP - British Pound</option>
+                                <option value="JPY">JPY - Japanese Yen</option>
+                                <option value="CAD">CAD - Canadian Dollar</option>
+                                <option value="AUD">AUD - Australian Dollar</option>
+                                <option value="CHF">CHF - Swiss Franc</option>
+                                <option value="CNY">CNY - Chinese Yuan</option>
+                            </select>
+                        </div>
+                        <button id="convert-btn" class="btn btn-success">Convert</button>
+                    </div>
+                    <div id="conversion-result" class="conversion-result"></div>
+                </div>
+            </section>
+
+            <!-- Stock Tracker Widget -->
+            <section class="widget stock-widget">
+                <div class="widget-header">
+                    <h2><i class="fas fa-chart-area"></i> Stock Tracker</h2>
+                    <div class="widget-controls">
+                        <input type="text" id="stock-symbol" placeholder="Enter symbol (e.g., AAPL)" maxlength="5">
+                        <button id="add-stock" class="btn btn-secondary">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div class="stock-filters">
+                        <input type="text" id="stock-search" placeholder="Search stocks..." class="search-input">
+                        <select id="stock-sort" class="sort-select">
+                            <option value="symbol">Sort by Symbol</option>
+                            <option value="price">Sort by Price</option>
+                            <option value="change">Sort by Change</option>
+                        </select>
+                    </div>
+                    <div id="stock-list" class="stock-list">
+                        <div class="loading">Loading stock data...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cryptocurrency Widget -->
+            <section class="widget crypto-widget">
+                <div class="widget-header">
+                    <h2><i class="fab fa-bitcoin"></i> Cryptocurrency Prices</h2>
+                    <div class="widget-controls">
+                        <select id="crypto-filter" class="filter-select">
+                            <option value="all">All Cryptos</option>
+                            <option value="top5">Top 5</option>
+                            <option value="gainers">Top Gainers</option>
+                            <option value="losers">Top Losers</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div id="crypto-list" class="crypto-list">
+                        <div class="loading">Loading cryptocurrency data...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exchange Rates Widget -->
+            <section class="widget rates-widget">
+                <div class="widget-header">
+                    <h2><i class="fas fa-globe"></i> Exchange Rates</h2>
+                    <div class="widget-controls">
+                        <select id="base-currency" class="base-select">
+                            <option value="USD">USD Base</option>
+                            <option value="EUR">EUR Base</option>
+                            <option value="GBP">GBP Base</option>
+                            <option value="JPY">JPY Base</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div class="rates-filters">
+                        <input type="text" id="rates-search" placeholder="Search currencies..." class="search-input">
+                    </div>
+                    <div id="rates-list" class="rates-list">
+                        <div class="loading">Loading exchange rates...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Budget Calculator Widget -->
+            <section class="widget budget-widget">
+                <div class="widget-header">
+                    <h2><i class="fas fa-calculator"></i> Budget Calculator</h2>
+                </div>
+                <div class="widget-content">
+                    <div class="budget-form">
+                        <div class="input-group">
+                            <label for="monthly-income">Monthly Income:</label>
+                            <input type="number" id="monthly-income" min="0" step="0.01" placeholder="Enter monthly income">
+                        </div>
+                        <div class="expense-section">
+                            <h3>Monthly Expenses</h3>
+                            <div id="expense-list">
+                                <div class="expense-item">
+                                    <input type="text" placeholder="Expense name" class="expense-name">
+                                    <input type="number" placeholder="Amount" class="expense-amount" min="0" step="0.01">
+                                    <button class="remove-expense btn btn-danger">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <button id="add-expense" class="btn btn-secondary">
+                                <i class="fas fa-plus"></i> Add Expense
+                            </button>
+                        </div>
+                        <button id="calculate-budget" class="btn btn-primary">Calculate Budget</button>
+                    </div>
+                    <div id="budget-result" class="budget-result"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div class="footer-content">
+                <p>&copy; 2025 Personal Finance Dashboard Developed by Bizy</p>
+            </div>
+        </footer>
+
+        <!-- Error Modal -->
+        <div id="error-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Error</h3>
+                <p id="error-message"></p>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
